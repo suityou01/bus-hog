@@ -1,0 +1,28 @@
+{
+  "name": "hogs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test/index.js",
+    "dev": "nodemon ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "debug": "^4.3.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "json-cycle": "^1.5.0",
+    "rhea": "^3.0.2",
+    "uuid": "^10.0.0",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "@azure/identity": "^4.3.0",
+    "@azure/service-bus": "^7.9.5",
+    "nodemon": "^3.1.4"
+  }
+}

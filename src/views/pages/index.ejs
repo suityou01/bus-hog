@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container bg-dark">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+    <nav>
+        <div class="nav nav-tabs bg-dark" id="navTab" role="tablist">
+            <button class="nav-link active bg-dark" id="nav-receivers-tab" data-bs-toggle="tab" data-bs-target="#nav-receivers-tab-pane" type="button" role="tab" aria-controls="receivers" aria-selected="true">Receivers</button>
+            <button class="nav-link bg-dark" id="nav-senders-tab" data-bs-toggle="tab" data-bs-target="#nav-senders-tab-pane" type="button" role="tab" aria-controls="senders" aria-selected="false">Senders</button>
+            <button class="nav-link bg-dark" id="nav-sessions-tab" data-bs-toggle="tab" data-bs-target="#nav-sessions-tab-pane" type="button" role="tab" aria-controls="sessions" aria-selected="false">Sessions</button>
+            <button class="nav-link bg-dark" id="nav-connections-tab" data-bs-toggle="tab" data-bs-target="#nav-connections-tab-pane" type="button" role="tab" aria-controls="connections" aria-selected="false">Connections</button>
+            <button class="nav-link bg-dark" id="nav-messages-tab" data-bs-toggle="tab" data-bs-target="#nav-messages-tab-pane" type="button" role="tab" aria-controls="messages" aria-selected="false">Messages</button>
+            <button class="nav-link bg-dark" id="nav-topics-tab" data-bs-toggle="tab" data-bs-target="#nav-topics-tab-pane" type="button" role="tab" aria-controls="topics" aria-selected="false">Topics</button>
+            <button class="nav-link bg-dark" id="nav-queues-tab" data-bs-toggle="tab" data-bs-target="#nav-queues-tab-pane" type="button" role="tab" aria-controls="queues" aria-selected="false">Queues</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="navTabContent">
+        <div class="tab-pane fade show active" id="nav-receivers-tab-pane" role="tabpanel" aria-labelledby="nav-receivers-tab">
+            <table class="table table-striped table-dark table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Delivery Count</th>
+                        <th scope="col">Links</th>
+                        <th scope="col">Remove</th>
+                        <th scope="col">State</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% receivers.forEach(function(receiver) { %>
+                        <tr>
+                            <td>
+                                <strong><%= receiver.name %></strong>
+                            </td>
+                            <td>
+                                <%= receiver.delivery_count %>
+                            </td>
+                            <td>
+                                <pre>
+                                    <%= receiver.session && receiver.session.links ? JSON.stringify(receiver.session.links, null, 2) : "" %>
+                                </pre>
+                            </td>
+                            <td>
+                                <pre>
+                                    <%= JSON.stringify(receiver.session.connection.remote, null, 2) %>
+                                </pre>
+                            </td>
+                            <td>
+                                <pre>
+                                    <%= JSON.stringify(receiver.state, null, 2) %>
+                                </pre>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div><!--nav-receivers-->
+        <div class="tab-pane fade" id="nav-senders-tab-pane" role="tabpanel" aria-labelledby="nav-senders-tab">
+            <table class="table table-striped table-dark table-sm">
+                <thead>
+                    <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Delivery Count</th>
+                    <th scope="col">Links</th>
+                    <th scope="col">State</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% senders.forEach(function(sender) { %>
+                        <tr>
+                            <td>
+                                <strong><%= sender.name %></strong>
+                            </td>
+                            <td>
+                                <%= sender.delivery_count %>
+                            </td>
+                            <td>
+                                <pre>
+                                    <%= sender.session && sender.session.links ? JSON.stringify(sender.session.links, null, 2) : "" %>
+                                </pre>
+                            </td>
+                            <td>
+                                <pre>
+                                    <%= JSON.stringify(sender.state, null, 2) %>
+                                </pre>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div><!--nav-senders-->
+        <div class="tab-pane fade" id="nav-sessions-tab-pane" role="tabpanel" aria-labelledby="nav-sessions-tab">
+            <table class="table table-striped table-dark table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Links</th>
+                        <th scope="col">Local</th>
+                        <th scope="col">Remote</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% sessions.forEach(function(session) { %>
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                <pre>
+                                    
+                                </pre>
+                            </td>
+                            <td>
+                                <pre>
+                                    
+                                </pre>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div><!--nav-sessions-->
+        <div class="tab-pane fade" id="nav-connections-tab-pane" role="tabpanel" aria-labelledby="nav-connections-tab">
+            Connections Tab
+        </div><!--nav-connections-->
+        <div class="tab-pane fade" id="nav-messages-tab-pane" role="tabpanel" aria-labelledby="nav-messages-tab">
+            <table class="table table-striped table-dark table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Message Envelope</th>
+                        <th scope="col">Message Body</th>
+                        <th scope="col">Settled</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% messages.forEach(function(message) { %>
+                        <tr>
+                            <td>
+                                <pre>
+                                    <%= JSON.stringify(message, null, 2) %>
+                                </pre>
+                            </td>
+                            <td>
+                                <pre>
+                                    <%= 1 %>
+                                </pre>
+                            </td>
+                            <td>
+                                <%= message.settled %>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div><!--nav-messages-->
+        <div class="tab-pane fade" id="nav-topics-tab-pane" role="tabpanel" aria-labelledby="nav-topics-tab">
+            <table class="table table-striped table-dark table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Topic</th>
+                        <th scope="col">Subscription</th>
+                        <th scope="col">EndPoint</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% topics.forEach(function(topic) { %>
+                        <tr>
+                            <td>
+                                <%= topic.topic %>
+                            </td>
+                            <td>
+                                <%= topic.subscription %>
+                            </td>
+                            <td>
+                                <%= topic.endpoint %>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            <form method="post" onsubmit="event.preventDefault();">
+                <div class="mb-3">
+                    <label for="topic" class="form-label">Topic</label>
+                    <select id="topic" class="form-control">
+                        <% topics.forEach(function(topic) { %>
+                            <option value=<%= topic.topic %>>
+                                <%= topic.topic %>
+                            </option>
+                        <% }); %>
+                    </select>
+                    <textarea id="message" cols="5" rows="10" class="form-control">
+{
+    "body": "Hello World"
+}
+                    </textarea>
+                    <button class="form-control" onclick="post_to_topic(event);">Yee Haw</button>
+                </div>
+            </form>
+            <script lang="js">
+                function post_to_topic(e){
+                    const topic = document.getElementById("topic").value;
+                    const message = document.getElementById("message").value;
+                    console.log(message);
+                    fetch(`/api/topics/${topic}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: message
+                    });
+                }
+            </script>
+        </div><!--nav-topics-->
+        <div class="tab-pane fade" id="nav-queues-tab-pane" role="tabpanel" aria-labelledby="nav-queues-tab">
+            <table class="table table-striped table-dark table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Delivery Count</th>
+                        <th scope="col">State</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div><!--nav-queues-->
+    </div><!--nav-tabContent-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
